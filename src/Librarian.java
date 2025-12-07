@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Librarian extends Person {
@@ -94,7 +93,6 @@ public class Librarian extends Person {
         if (findBook && findClient) {
             bookFound.setClient(clientFound);
             bookFound.setAvailable(false);
-            clientFound.getBooks().add(bookFound);
 
             System.out.println("Book loaned");
         } else  {
@@ -117,7 +115,6 @@ public class Librarian extends Person {
 
         if (found && (!bookFound.getAvailable())) {
             bookFound.setAvailable(true);
-            bookFound.getClient().getBooks().remove(bookFound);
             bookFound.setClient(null);
             System.out.println("Book has been returned");
 
@@ -148,6 +145,7 @@ public class Librarian extends Person {
     public void removeClient(String clientName) {
         Boolean found = false;
         Client clientFound = null;
+        Boolean borrowed = false;
 
         if (!clients.isEmpty()) {
             for (Client client : clients) {
@@ -159,14 +157,20 @@ public class Librarian extends Person {
         }
 
         if (found) {
-            if (!clientFound.getBooks().isEmpty()){
-                System.out.println("Client still has borrowed books");
-            } else {
-                clients.remove(clientFound);
-                System.out.println("Client removed");
+            for (Book book : books) {
+                if ((book.getClient() != null) && (book.getClient().equals(clientFound))) {
+                    borrowed = true;
+                }
             }
         } else  {
             System.out.println("Client not found");
+        }
+
+        if (borrowed) {
+            System.out.println("Client still has borrowed books");
+        } else {
+            clients.remove(clientFound);
+            System.out.println("Client removed");
         }
     }
 
