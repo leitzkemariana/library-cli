@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Person {
     private String name;
     private String email;
@@ -26,4 +23,5 @@ public class Person {
         //System.out.println("Password: " + password);
         System.out.println("");
     }
+
 }
