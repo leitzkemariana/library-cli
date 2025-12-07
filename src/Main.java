@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ public class Main {
 
         Library library = new Library();
         Librarian librarian = new Librarian("Librarian", "Libri@gmail", "123", library);
-
         library.addLibrarian(librarian);
 
         while(true) {
@@ -180,7 +181,11 @@ public class Main {
                             }
 
                             if (opClient == 1){
-                                client.listBooks();
+                                for (Book book : library.getBooks()){
+                                    if ((book.getClient() != null) && (book.getClient().getName().equals(nome))){
+                                        book.showBook();
+                                    }
+                                }
 
                             } else if (opClient == 2) {
                                 System.out.print("Enter book title: ");
