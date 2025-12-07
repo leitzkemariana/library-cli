@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Client extends Person {
 
     public Client(String name, String email, String password) {
@@ -11,3 +8,4 @@ public class Client extends Person {
         super.showDetails();
     }
 }
+
