@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4a108ce-aeb6-46e4-b917-1e91f879217f" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;matheushenriquereiter&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/leitzkemariana/library-cli&quot;,
+    &quot;accountId&quot;: &quot;94bc3a32-81eb-4fb4-a15a-4ccfc700af82&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="35WlK9OjHepXltpaiaCYlPZkM1N" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/leitz/IdeaProjects/library/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leitz\IdeaProjects\library\resources" />
+      <recent name="C:\Users\leitz\IdeaProjects\library\src\main\resources" />
+      <recent name="C:\Users\leitz\IdeaProjects\library\src\main\java\com\mari" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="biblioteca" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="biblioteca" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4a108ce-aeb6-46e4-b917-1e91f879217f" name="Changes" comment="" />
+      <created>1763233641465</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763233641465</updated>
+      <workItem from="1763233642834" duration="3188000" />
+      <workItem from="1763484002463" duration="13931000" />
+      <workItem from="1763499314964" duration="357000" />
+      <workItem from="1764005090502" duration="62000" />
+      <workItem from="1764264228010" duration="3730000" />
+      <workItem from="1764268008555" duration="7703000" />
+      <workItem from="1764276927912" duration="4283000" />
+      <workItem from="1764422554127" duration="777000" />
+      <workItem from="1764522879340" duration="8000" />
+      <workItem from="1764547741596" duration="28000" />
+      <workItem from="1765060188346" duration="1407000" />
+      <workItem from="1765062375299" duration="6778000" />
+      <workItem from="1765151226184" duration="99000" />
+      <workItem from="1765151352555" duration="300000" />
+      <workItem from="1765151670546" duration="15000" />
+      <workItem from="1765151847011" duration="26000" />
+      <workItem from="1765151880693" duration="4000" />
+      <workItem from="1765152030237" duration="43000" />
+      <workItem from="1765152096700" duration="1018000" />
+      <workItem from="1765153421840" duration="2628000" />
+      <workItem from="1765197463235" duration="5066000" />
+      <workItem from="1765299765167" duration="10927000" />
+      <workItem from="1765313112106" duration="6623000" />
+      <workItem from="1765324012415" duration="2102000" />
+      <workItem from="1765463506653" duration="32000" />
+      <workItem from="1765463561823" duration="1787000" />
+      <workItem from="1765465409079" duration="364000" />
+      <workItem from="1765474674951" duration="6864000" />
+      <workItem from="1765487003508" duration="693000" />
+      <workItem from="1765497603199" duration="342000" />
+      <workItem from="1765498229977" duration="931000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
