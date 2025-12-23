@@ -71,7 +71,7 @@ public class Librarian extends Person {
                     result.getInt("year")
                 );
 
-                book.showBook();
+                System.out.println(book);
 
                 Integer id = result.getInt("borrowed_by");
                 if (!result.wasNull()) {
@@ -274,7 +274,7 @@ public class Librarian extends Person {
                         result.getString("password")
                 );
 
-                client.showClient();
+                System.out.println(client);
                 Integer id =  result.getInt("id");
                 System.out.println("--- Borrowed Books ---");
 
@@ -315,7 +315,7 @@ public class Librarian extends Person {
                         result.getString("password")
                 );
 
-                client.showClient();
+                System.out.println(client);
 
                 try {
                     statement = conn.prepareStatement("SELECT * FROM Books WHERE borrowed_by = ?");
