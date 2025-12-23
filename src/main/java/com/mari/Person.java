@@ -18,9 +18,7 @@ public class Person {
 
     public String getPassword() { return password; }
 
-    public void showDetails() {
-        System.out.println("Name: " + name);
-        System.out.println("Email: " + email);
-        //System.out.println("Password: " + password);
+    public String toString() {
+        return String.format("%nName: %s %nEmail: %s", name, email);
     }
 }
