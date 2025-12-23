@@ -74,6 +74,6 @@ public class Client extends Person {
     }
 
     public void showClient(){
-        super.showDetails();
+        super.toString();
     }
 }
