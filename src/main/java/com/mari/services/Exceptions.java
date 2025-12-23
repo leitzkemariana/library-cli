@@ -4,9 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exceptions {
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
-    public String answer (String question){
+    public static String answer (String question){
         String answer = "";
 
         while (answer.isEmpty()){
@@ -16,7 +16,7 @@ public class Exceptions {
         return answer;
     }
 
-    public Integer number (String question){
+    public static Integer number (String question){
         Integer number = null;
 
         while (number == null) {
