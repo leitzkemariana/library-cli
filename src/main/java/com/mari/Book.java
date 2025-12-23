@@ -17,21 +17,8 @@ public class Book {
         this.client = null;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-
-    public void showBook() {
-        System.out.println("");
-        System.out.println("ID: " + id);
-        System.out.println("Title: " + title);
-        System.out.println("Author: " + author);
-        System.out.println("Publisher: " + publisher);
-        System.out.println("Year: " + year);
+    public String toString() {
+        return String.format("%nID: %s %nTitle: %s %nAuthor: %s %nPublisher: %s %nYear: %s",
+                id, title, author, publisher, year);
     }
 }
