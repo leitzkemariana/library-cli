@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Exceptions exceptions = new Exceptions();
-
         Library library = new Library();
         Librarian librarian = new Librarian("Librarian", "Libri@gmail", "123", library);
         library.addLibrarian(librarian);
@@ -25,11 +23,11 @@ public class Main {
             System.out.println("2. Access client menu");
             System.out.println("3. Exit");
 
-            option = exceptions.number("Enter your choice: ");
+            option = Exceptions.number("Enter your choice: ");
 
             if (option == 1) {
-                String libEmail = exceptions.answer("Email: ");
-                String password = exceptions.answer("Password: ");
+                String libEmail = Exceptions.answer("Email: ");
+                String password = Exceptions.answer("Password: ");
 
                 if (handlerDB.Login(1, libEmail, password) == true) {
                     while (true) {
@@ -62,53 +60,53 @@ public class Main {
 
                         if (opLibrarian == 1) {
                             Integer id = null;
-                            String bookTitle = exceptions.answer("Enter book title: ");
-                            String bookAuthor =  exceptions.answer("Enter book author: ");
-                            String bookPublisher = exceptions.answer("Enter book publisher: ");
-                            Integer bookYear = exceptions.number("Enter year: ");
+                            String bookTitle = Exceptions.answer("Enter book title: ");
+                            String bookAuthor =  Exceptions.answer("Enter book author: ");
+                            String bookPublisher = Exceptions.answer("Enter book publisher: ");
+                            Integer bookYear = Exceptions.number("Enter year: ");
 
                             Book book = new Book(id, bookTitle, bookAuthor, bookPublisher, bookYear);
                             librarian.addBook(book);
 
 
                         } else if (opLibrarian == 2) {
-                            String bookTitle = exceptions.answer("Enter book title: ");
+                            String bookTitle = Exceptions.answer("Enter book title: ");
                             librarian.removeBook(bookTitle);
 
                         } else if (opLibrarian == 3) {
                             librarian.showBooks();
 
                         } else if (opLibrarian == 4) {
-                            String bookTitle = exceptions.answer("Enter book title: ");
+                            String bookTitle = Exceptions.answer("Enter book title: ");
                             librarian.searchBook(bookTitle);
 
                         } else if (opLibrarian == 5) {
-                            Integer bookId = exceptions.number("Enter book ID: ");
-                            String clientEmail = exceptions.answer("Enter client's email: ");
+                            Integer bookId = Exceptions.number("Enter book ID: ");
+                            String clientEmail = Exceptions.answer("Enter client's email: ");
 
                             librarian.loanBook(bookId, clientEmail);
 
                         } else if (opLibrarian == 6) {
-                            String bookTitle = exceptions.answer("Enter book title: ");
+                            String bookTitle = Exceptions.answer("Enter book title: ");
                             librarian.returnBook(bookTitle);
 
                         } else if (opLibrarian == 7) {
-                            String clientName =  exceptions.answer("Enter client's name: ");
-                            String clientEmail = exceptions.answer("Enter client's email: ");
-                            String clientPassword = exceptions.answer("Enter client's password: ");
+                            String clientName =  Exceptions.answer("Enter client's name: ");
+                            String clientEmail = Exceptions.answer("Enter client's email: ");
+                            String clientPassword = Exceptions.answer("Enter client's password: ");
 
                             Client client = new Client(clientName, clientEmail, clientPassword);
                             librarian.addClient(client);
 
                         } else if (opLibrarian == 8) {
-                            String clientName = exceptions.answer("Enter client's name: ");
+                            String clientName = Exceptions.answer("Enter client's name: ");
                             librarian.removeClient(clientName);
 
                         } else if (opLibrarian == 9) {
                             librarian.showClients();
 
                         } else if (opLibrarian == 10) {
-                            String clientName = exceptions.answer("Enter client's name: ");
+                            String clientName = Exceptions.answer("Enter client's name: ");
                             librarian.searchClient(clientName);
 
                         } else {
@@ -119,8 +117,8 @@ public class Main {
             }
 
             if (option == 2) {
-                String email = exceptions.answer("Email: ");
-                String password = exceptions.answer("Password: ");
+                String email = Exceptions.answer("Email: ");
+                String password = Exceptions.answer("Password: ");
 
                 if (handlerDB.Login(2, email, password)) {
                     Client client = new Client(null, email, password);
@@ -132,13 +130,13 @@ public class Main {
                         System.out.println("2. Search book");
                         System.out.println("3. Exit");
 
-                        opClient = exceptions.number("Enter your choice: ");
+                        opClient = Exceptions.number("Enter your choice: ");
 
                         if (opClient == 1) {
                             client.showBooks(email);
 
                         } else if (opClient == 2) {
-                            String bookTitle = exceptions.answer("Enter book title: ");
+                            String bookTitle = Exceptions.answer("Enter book title: ");
                             client.searchBook(bookTitle);
 
                         } else if (opClient == 3) {
