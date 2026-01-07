@@ -22,10 +22,10 @@ public class Librarian extends Person {
     public void addBook(Book book) {
         try {
             statement = conn.prepareStatement("INSERT INTO Books (title, author, publisher, year) VALUES (?, ?, ?, ?)");
-            statement.setString(1, book.title);
-            statement.setString(2, book.author);
-            statement.setString(3, book.publisher);
-            statement.setInt(4, book.year);
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+            statement.setString(3, book.getPublisher());
+            statement.setInt(4, book.getYear());
             statement.execute();
             System.out.println("Book added");
 
