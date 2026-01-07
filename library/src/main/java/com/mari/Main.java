@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        Librarian librarian = new Librarian("Librarian", "Libri@gmail", "123", library);
-        library.addLibrarian(librarian);
+        Librarian librarian = new Librarian("Librarian", "librarian@gmail", "123", library);
+        //library.addLibrarian(librarian);
 
         HandlerDB handlerDB = new HandlerDB();
 
@@ -64,14 +64,13 @@ public class Main {
                         }
 
                         if (opLibrarian == 1) {
-                            Integer id = null;
                             System.out.println();
                             String bookTitle = Exceptions.answer("Enter book title: ");
                             String bookAuthor =  Exceptions.answer("Enter book author: ");
                             String bookPublisher = Exceptions.answer("Enter book publisher: ");
                             Integer bookYear = Exceptions.number("Enter year: ");
 
-                            Book book = new Book(id, bookTitle, bookAuthor, bookPublisher, bookYear);
+                            Book book = new Book(bookTitle, bookAuthor, bookPublisher, bookYear);
                             librarian.addBook(book);
 
                         } else if (opLibrarian == 2) {
