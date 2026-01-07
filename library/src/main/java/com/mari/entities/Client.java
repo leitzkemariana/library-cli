@@ -8,13 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Client extends Person {
-    private Connection conn;
+    HandlerDB handlerDB = new HandlerDB();
+    Connection conn = handlerDB.getConn();
     private PreparedStatement statement;
 
     public Client(String name, String email, String password) {
         super(name, email, password);
-        HandlerDB handlerDB = new HandlerDB();
-        conn = handlerDB.getConn();
     }
 
     public void showBooks (String clientEmail){
