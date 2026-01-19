@@ -1,6 +1,6 @@
 package com.mari.entities;
 
-import com.mari.services.HandlerDB;
+import com.mari.services.ConnectionDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Librarian extends Person {
-    HandlerDB handlerDB = new HandlerDB();
-    private Connection conn = handlerDB.getConn();
+    private final ConnectionDB connection = new ConnectionDB();
+    private final Connection conn = connection.getConnection();
+    private ResultSet result;
     private PreparedStatement statement;
 
     private Library library;
@@ -17,6 +18,14 @@ public class Librarian extends Person {
     public Librarian(String name, String email, String password, Library library) {
         super(name, email, password);
         this.library = library;
+    }
+
+    public PreparedStatement getPreparedStatement() {
+        return statement;
+    }
+
+    public ResultSet getResult() {
+        return result;
     }
 
     public void addBook(Book book) {
@@ -29,7 +38,7 @@ public class Librarian extends Person {
             statement.execute();
             System.out.println("Book added");
 
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }
@@ -46,7 +55,7 @@ public class Librarian extends Person {
                 System.out.println("Book not found");
             }
 
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }
@@ -54,7 +63,7 @@ public class Librarian extends Person {
     public void showBooks() {
         try {
             statement = conn.prepareStatement("SELECT * FROM Books");
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
 
             while (result.next()) {
                 Book book = new Book(
@@ -89,7 +98,7 @@ public class Librarian extends Person {
         try {
             statement = conn.prepareStatement("SELECT * FROM Books WHERE title = ?");
             statement.setString(1, bookTitle);
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
 
             if (result.next()){
                 System.out.println("ID: " + result.getInt("id"));
@@ -124,11 +133,11 @@ public class Librarian extends Person {
         try {
             statement = conn.prepareStatement("SELECT * FROM Books WHERE id = ?");
             statement.setInt(1, bookID);
-            ResultSet resultBook = statement.executeQuery();
+            result = statement.executeQuery();
 
-            if (resultBook.next()) {
-                Integer borrowed = resultBook.getInt("borrowed_by");
-                Boolean isAvaible = resultBook.wasNull();
+            if (result.next()) {
+                Integer borrowed = result.getInt("borrowed_by");
+                Boolean isAvaible = result.wasNull();
 
                 statement = conn.prepareStatement("SELECT * FROM Clients WHERE email = ?");
                 statement.setString(1, clientEmail);
@@ -138,7 +147,7 @@ public class Librarian extends Person {
                     if (resultClient.next()) {
                         statement = conn.prepareStatement("UPDATE Books SET borrowed_by = ? WHERE id = ?");
                         statement.setInt(1, resultClient.getInt("id"));
-                        statement.setInt(2, resultBook.getInt("id"));
+                        statement.setInt(2, result.getInt("id"));
                         statement.executeUpdate();
 
                         System.out.println("Book loaned");
@@ -155,7 +164,7 @@ public class Librarian extends Person {
                 System.out.println("Book not found");
             }
 
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }
@@ -164,7 +173,7 @@ public class Librarian extends Person {
         try {
             statement = conn.prepareStatement("SELECT * FROM Books WHERE title = ?");
             statement.setString(1, bookTitle);
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
 
             if (result.next()){
                 try{
@@ -180,7 +189,7 @@ public class Librarian extends Person {
                 System.out.println("Book not found");
             }
 
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
         }
 
@@ -190,7 +199,7 @@ public class Librarian extends Person {
         try{
             statement = conn.prepareStatement("SELECT * FROM Clients WHERE email = ?");
             statement.setString(1, client.getEmail());
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
 
             if (result.next()) {
                 System.out.println("email already registered");
@@ -213,11 +222,11 @@ public class Librarian extends Person {
         }
     }
 
-    public void removeClient(String clientName) {
+    public void removeClient(String clientEmail) {
         try {
-            statement = conn.prepareStatement("SELECT * FROM Clients WHERE name = ?");
-            statement.setString(1, clientName);
-            ResultSet result = statement.executeQuery();
+            statement = conn.prepareStatement("SELECT * FROM Clients WHERE email = ?");
+            statement.setString(1, clientEmail);
+            result = statement.executeQuery();
 
             try{
                 statement = conn.prepareStatement("SELECT * FROM Books WHERE borrowed_by = ?");
@@ -230,8 +239,8 @@ public class Librarian extends Person {
                 } else{
 
                     try {
-                        statement = conn.prepareStatement("DELETE FROM Clients WHERE name = ?");
-                        statement.setString(1, clientName);
+                        statement = conn.prepareStatement("DELETE FROM Clients WHERE email = ?");
+                        statement.setString(1, clientEmail);
                         int rows = statement.executeUpdate();
 
                         if (rows > 0) {
@@ -296,7 +305,7 @@ public class Librarian extends Person {
         try{
             statement = conn.prepareStatement("SELECT * FROM Clients WHERE name = ?");
             statement.setString(1, clientName);
-            ResultSet result = statement.executeQuery();
+            result = statement.executeQuery();
 
             if (result.getString("name") == null){
                 System.out.println("Client not found");
@@ -315,17 +324,16 @@ public class Librarian extends Person {
                     statement.setInt(1, result.getInt("id"));
                     ResultSet resultBooks = statement.executeQuery();
 
-                    if (resultBooks.next()) {
-                        System.out.println("--- Borrowed books ---");
+                    System.out.println("--- Borrowed books ---");
+                    while (resultBooks.next()) {
                         System.out.println("Title: " + resultBooks.getString("title"));
-                        System.out.println("");
                     }
 
                 } catch (SQLException e){
                     System.out.println(e.getMessage());
                 }
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
         }
 
