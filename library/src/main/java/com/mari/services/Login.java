@@ -5,14 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HandlerDB {
-    private ConnectionDB connection = new ConnectionDB();
-    private Connection conn = connection.connect();
+public class Login {
+    private final ConnectionDB connection = new ConnectionDB();
+    private final Connection conn = connection.getConnection();
     private PreparedStatement preparedStatement;
-
-    public Connection getConn() {
-        return conn;
-    }
+    private ResultSet result;
 
     public Boolean Login (Integer option, String email, String password) {
         String query = "";
@@ -27,7 +24,7 @@ public class HandlerDB {
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
-            ResultSet result = preparedStatement.executeQuery();
+            result = preparedStatement.executeQuery();
 
             if (result.next()){
                 return true;
