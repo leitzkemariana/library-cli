@@ -1,23 +1,49 @@
 package com.mari.services;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ConnectionDB {
-     private String url = "jdbc:sqlite:resources/library.db";
-     private java.sql.Connection conn = null;
+     private static Connection conn = null;
 
-    public java.sql.Connection connect() {
-         try{
+     public static Connection getConnection(){
+         try {
              if (conn == null) {
+                 String url = "jdbc:sqlite:resources/library.db";
                  conn = DriverManager.getConnection(url);
-                 //System.out.println("Database connection established");
-                 //System.out.println("Using: " + new File("resources/library.db").getAbsolutePath());
              }
-
-         } catch (SQLException e){
-             System.out.println(e.getMessage());
+         } catch (SQLException ex) {
+             throw  new RuntimeException(ex.getMessage());
          }
-         return conn;
+        return conn;
+     }
+
+     public static void closeConnection(){
+         if(conn!=null){
+             try {
+                 conn.close();
+             } catch (SQLException ex) {
+                 throw  new RuntimeException(ex.getMessage());
+             }
+         }
+     }
+
+     public static void closeStatement(Statement stmt){
+         if(stmt!=null){
+             try {
+                 stmt.close();
+             } catch (SQLException ex) {
+                 throw  new RuntimeException(ex.getMessage());
+             }
+         }
+     }
+
+     public static void closeResultSet(ResultSet rs){
+         if(rs!=null){
+             try {
+                 rs.close();
+             } catch (SQLException ex) {
+                 throw  new RuntimeException(ex.getMessage());
+             }
+         }
      }
 }
