@@ -4,9 +4,11 @@ import com.mari.entities.Book;
 import com.mari.entities.Client;
 import com.mari.entities.Librarian;
 import com.mari.entities.Library;
+import com.mari.services.ConnectionDB;
 import com.mari.services.Exceptions;
-import com.mari.services.HandlerDB;
+import com.mari.services.Login;
 
+import java.sql.Connection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ public class Main {
         Librarian librarian = new Librarian("Librarian", "librarian@gmail", "123", library);
         //library.addLibrarian(librarian);
 
-        HandlerDB handlerDB = new HandlerDB();
+        Login login = new Login();
 
         while (true) {
             Scanner input = new Scanner(System.in);
@@ -33,9 +35,8 @@ public class Main {
                 String libEmail = Exceptions.answer("Email: ");
                 String password = Exceptions.answer("Password: ");
 
-                if (handlerDB.Login(1, libEmail, password) == true) {
+                if (login.Login(1, libEmail, password) == true) {
                     while (true) {
-                        Integer opLibrarian = 0;
                         System.out.println();
                         System.out.println("----Librarian Menu----");
                         System.out.println("1. Add book");
@@ -49,19 +50,8 @@ public class Main {
                         System.out.println("9. Show clients");
                         System.out.println("10. Search client");
                         System.out.println("11. Exit");
-                        System.out.print("Enter your choice: ");
 
-                        try {
-                            opLibrarian = input.nextInt();
-                            if (opLibrarian < 1 || opLibrarian > 11) {
-                                System.out.println("Invalid choice");
-                                continue;
-                            }
-                        } catch (InputMismatchException e) {
-                            System.out.println("Invalid input. Please enter an integer.");
-                            input.next();
-                            continue;
-                        }
+                        Integer opLibrarian = Exceptions.number("Enter your choice: ");
 
                         if (opLibrarian == 1) {
                             System.out.println();
@@ -109,8 +99,8 @@ public class Main {
 
                         } else if (opLibrarian == 8) {
                             System.out.println();
-                            String clientName = Exceptions.answer("Enter client's name: ");
-                            librarian.removeClient(clientName);
+                            String clientEmail = Exceptions.answer("Enter client's email: ");
+                            librarian.removeClient(clientEmail);
 
                         } else if (opLibrarian == 9) {
                             librarian.showClients();
@@ -120,7 +110,10 @@ public class Main {
                             String clientName = Exceptions.answer("Enter client's name: ");
                             librarian.searchClient(clientName);
 
-                        } else {
+                        } else if (opLibrarian == 11) {
+                            System.out.println();
+                            ConnectionDB.closeStatement(librarian.getPreparedStatement());
+                            ConnectionDB.closeResultSet(librarian.getResult());
                             break;
                         }
                     }
@@ -132,18 +125,17 @@ public class Main {
                 String email = Exceptions.answer("Email: ");
                 String password = Exceptions.answer("Password: ");
 
-                if (handlerDB.Login(2, email, password)) {
+                if (login.Login(2, email, password)) {
                     Client client = new Client(null, email, password);
 
                     while (true) {
-                        Integer opClient = 0;
                         System.out.println();
                         System.out.println("----Client Menu----");
                         System.out.println("1. Show borrowed books");
                         System.out.println("2. Search book");
                         System.out.println("3. Exit");
 
-                        opClient = Exceptions.number("Enter your choice: ");
+                        Integer opClient = Exceptions.number("Enter your choice: ");
 
                         if (opClient == 1) {
                             client.showBooks(email);
@@ -154,6 +146,9 @@ public class Main {
                             client.searchBook(bookTitle);
 
                         } else if (opClient == 3) {
+                            System.out.println();
+                            ConnectionDB.closeStatement(client.getStatement());
+                            ConnectionDB.closeResultSet(client.getResult());
                             break;
                         }
                     }
@@ -162,6 +157,8 @@ public class Main {
             }
 
             if (option == 3) {
+                Connection conn = ConnectionDB.getConnection();
+                ConnectionDB.closeConnection();
                 break;
             }
         }
